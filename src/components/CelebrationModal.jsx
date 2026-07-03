@@ -1,6 +1,6 @@
 import { PartyPopper, Sparkles, Trophy, X } from "lucide-react";
 
-const copy = { mission: ["Mission complete", "Coins and XP dropped into the stash."], category: ["Category cleared", "That whole mission zone is handled."], level: ["Level up", "New level unlocked. That was a clean run."], "perfect-day": ["Perfect day", "Every mission is done. Huge streak energy."], reward: ["Reward claimed", "A parent reward request has been added."] };
+const copy = { mission: ["Quest claimed", "Coins and XP dropped into the stash."], category: ["Quest zone cleared", "That whole zone is handled."], level: ["Level up", "New level unlocked. That was a clean run."], "perfect-day": ["Perfect day", "Every quest is done. Huge streak energy."], reward: ["Treasure claimed", "A parent treasure request has been added."] };
 
 export default function CelebrationModal({ celebration, onClose }) {
   if (!celebration) return null;
