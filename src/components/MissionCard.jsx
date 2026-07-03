@@ -10,7 +10,7 @@ export default function MissionCard({ mission, completed, onComplete }) {
         <span><Coins size={15} /> {mission.coins} coins</span>
       </div>
       <button className="mission-button" onClick={onComplete} disabled={completed} type="button">
-        {completed ? "Done" : "Complete"}
+        {completed ? "Claimed" : "Claim quest"}
       </button>
     </article>
   );
