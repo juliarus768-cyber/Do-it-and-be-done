@@ -1,0 +1,14 @@
+import { BarChart3, CalendarCheck, Coins, RotateCcw, Sparkles } from "lucide-react";
+import { childStats } from "../utils/gameLogic";
+import ProgressRing from "./ProgressRing";
+
+export default function ParentDashboard({ state, categories, onSelectChild, handlers }) {
+  const children = Object.values(state.children);
+  return (
+    <div className="parent-page">
+      <section className="parent-hero"><div><span className="profile-kicker">Parent Dashboard</span><h1>Family progress at a glance</h1><p>See what is done, what is slipping, and which rewards are waiting for approval.</p></div><div className="parent-actions"><button className="primary-button" onClick={handlers.addDemoMission} type="button"><Sparkles size={18} /> Add demo mission</button><button className="ghost-button" onClick={handlers.resetToday} type="button"><RotateCcw size={18} /> Reset today</button></div></section>
+      <section className="parent-kid-grid">{children.map((child) => { const stats = childStats(state, child.id); const missed = child.missions.length - stats.completedIds.length; return <article className={`parent-kid-card theme-${child.theme}`} key={child.id}><div className="parent-kid-top"><div className="large-avatar">{child.avatar}</div><div><h2>{child.name}</h2><span>{stats.completedIds.length} done - {missed} missed</span></div></div><ProgressRing value={stats.completion} label="done" size={116} /><div className="parent-stat-row"><span><Coins size={16} /> {stats.earnedToday} earned</span><span><CalendarCheck size={16} /> {child.dailyStreak} streak</span></div><button className="mission-button" onClick={() => onSelectChild(child.id)} type="button">Open dashboard</button></article>; })}</section>
+      <section className="weekly-grid"><div className="panel"><div className="section-heading"><span>Weekly summary</span><small><BarChart3 size={14} /> live demo</small></div><div className="summary-bars">{children.map((child) => { const stats = childStats(state, child.id); return <div key={child.id}><span>{child.name}</span><div className="xp-bar"><span style={{ width: `${stats.completion}%` }} /></div></div>; })}</div></div><div className="panel"><div className="section-heading"><span>Category focus</span><small>{categories.length} mission zones</small></div><div className="category-pills">{categories.map((category) => <span key={category.id}>{category.label}</span>)}</div></div><div className="panel"><div className="section-heading"><span>Reward requests</span><small>{state.rewardRequests.length} new</small></div>{state.rewardRequests.length === 0 ? <p className="empty-note">No claimed rewards yet.</p> : <div className="history-list">{state.rewardRequests.slice(0, 5).map((request) => <div key={request.id}><strong>{request.text}</strong><span>{request.date}</span></div>)}</div>}</div></section>
+    </div>
+  );
+}

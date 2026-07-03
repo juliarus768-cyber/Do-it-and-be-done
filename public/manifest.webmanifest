@@ -1,0 +1,36 @@
+{
+  "name": "Do It and Be Done",
+  "short_name": "Done",
+  "description": "Family missions, coins, streaks, badges, and rewards.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#120f2e",
+  "theme_color": "#7c3cff",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icons/app-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/apple-touch-icon.svg",
+      "sizes": "180x180",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Today's Missions",
+      "short_name": "Missions",
+      "url": "/?view=missions"
+    },
+    {
+      "name": "Reward Store",
+      "short_name": "Rewards",
+      "url": "/?view=rewards"
+    }
+  ]
+}
