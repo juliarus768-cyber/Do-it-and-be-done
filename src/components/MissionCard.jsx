@@ -1,16 +1,19 @@
-import { Check, Coins } from "lucide-react";
+import { Check, Coins, Sparkle } from "lucide-react";
 
-export default function MissionCard({ mission, completed, onComplete }) {
+export default function MissionCard({ mission, completed, onComplete, step = 1 }) {
   return (
-    <article className={`mission-card ${completed ? "complete" : ""}`}>
-      <div className="mission-status">{completed ? <Check size={22} /> : mission.xp}</div>
-      <div className="mission-copy">
+    <article className={`quest-node-card ${completed ? "claimed" : ""}`}>
+      <div className="quest-node-orb">
+        {completed ? <Check size={24} /> : <span>{step}</span>}
+      </div>
+      <div className="quest-node-copy">
+        <span className="quest-type"><Sparkle size={14} /> Daily quest</span>
         <h4>{mission.title}</h4>
         <p>{mission.subtitle}</p>
-        <span><Coins size={15} /> {mission.coins} coins</span>
+        <span className="quest-payout"><Coins size={15} /> {mission.coins} coins - {mission.xp} XP</span>
       </div>
       <button className="mission-button" onClick={onComplete} disabled={completed} type="button">
-        {completed ? "Done" : "Complete"}
+        {completed ? "Claimed" : "Claim quest"}
       </button>
     </article>
   );
